@@ -3,7 +3,7 @@ from .forms import StorageForm
 from .models import Storage
 
 
-def index(request):
+def storage_create(request):
     if request.method == 'POST':
         form = StorageForm(request.POST)
         if form.is_valid():
@@ -16,12 +16,12 @@ def index(request):
                 if value:
                     data[key] = value
         Storage.objects.create(data=data, name=name)
-        return redirect('/output/')
+        return redirect('/storage_list/')
     else:
         form = StorageForm()
-    return render(request, 'index.html', {'form': form})
+    return render(request, 'storage_create.html', {'form': form})
 
 
 def storage_list(request):
-    data = Storage.objects.all().values('id', 'name', 'data')
-    return render(request, 'output.html', {'json_list' : list(data)})
+    data = Storage.objects.all().values('name', 'data')
+    return render(request, 'storage_list.html', {'storeges' : list(data)})

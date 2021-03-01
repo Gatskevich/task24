@@ -18,7 +18,7 @@ from django.contrib import admin
 import views
 
 urlpatterns = [
-    url(r'^$', views.index),
+    url(r'^$', views.storage_create),
     url(r'^admin/', admin.site.urls),
-    url(r'^output/$', views.storage_list)
+    url(r'^storage_list/$', views.storage_list)
 ]
