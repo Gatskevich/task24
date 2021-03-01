@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-import views
+from task24 import views
+
 
 urlpatterns = [
     url(r'^$', views.storage_create),

@@ -11,8 +11,8 @@ def storage_create(request):
             data = dict()
 
             for count in range(1, len(request.POST) - 1):
-                key = 'name' + str(count)
-                value = request.POST[key]
+                key = f'name{count}'
+                value = request.POST.get(key)
                 if value:
                     data[key] = value
         Storage.objects.create(data=data, name=name)
@@ -23,5 +23,12 @@ def storage_create(request):
 
 
 def storage_list(request):
-    data = Storage.objects.all().values('name', 'data')
-    return render(request, 'storage_list.html', {'storages' : data})
+    lines = list(Storage.objects.all().values('name', 'data'))
+    storages = []
+    for line in lines:
+        storage = {'name': line['name']}
+        for key in line['data']:
+            storage[key] = line['data'][key]
+        storages.append(storage)
+
+    return render(request, 'storage_list.html', {'storages': storages})

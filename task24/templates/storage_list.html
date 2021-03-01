@@ -11,14 +11,12 @@
 <body>
     <div>
         <div>
-           <a href="/" class="btn">Назад</a>
+           <a href="/" class="btn">Back</a>
         </div>
         <div>
             {% for i in storages %}
                 {% for key, value in i.items %}
-                    {% for key_new, value_new in value.items %}
-                        {{key_new}}={{value_new}}<br>
-                     {% endfor %}<br>
+                     {{key}}={{value}}<br>
                 {% endfor %}<br>
             {% endfor %}
         </div>

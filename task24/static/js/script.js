@@ -9,5 +9,4 @@ function addForm(){
 
     parent.appendChild(label);
     parent.appendChild(input);
-    return counter
 }
