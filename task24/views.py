@@ -7,20 +7,21 @@ def index(request):
     if request.method == 'POST':
         form = StorageForm(request.POST)
         if form.is_valid():
-            for count in range(0, len(request.POST) - 1):
+            name_stat = form.cleaned_data['name']
+            list_obj = dict()
+            for count in range(1, len(request.POST) - 1):
                 start_value = 'name' + str(count)
                 value = request.POST[start_value]
                 if value:
-                    name = start_value
-                    data = value
-                    Storage.objects.create(data=data, name=name)
+                    list_obj[start_value] = value
                 count += 1
+        Storage.objects.create(data=list_obj, name=name_stat)
         return redirect('/output/')
     else:
         form = StorageForm()
     return render(request, 'index.html', {'form': form})
 
 
-def done(request):
+def storage_list(request):
     data = Storage.objects.all().values('id', 'name', 'data')
     return render(request, 'output.html', {'json_list' : list(data)})
