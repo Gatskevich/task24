@@ -24,4 +24,4 @@ def storage_create(request):
 
 def storage_list(request):
     data = Storage.objects.all().values('name', 'data')
-    return render(request, 'storage_list.html', {'storeges' : list(data)})
+    return render(request, 'storage_list.html', {'storages' : data})

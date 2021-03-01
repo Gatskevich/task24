@@ -14,8 +14,12 @@
            <a href="/" class="btn">Назад</a>
         </div>
         <div>
-            {% for i in storeges %}
-            {{i}}<br>
+            {% for i in storages %}
+                {% for key, value in i.items %}
+                    {% for key_new, value_new in value.items %}
+                        {{key_new}}={{value_new}}<br>
+                     {% endfor %}<br>
+                {% endfor %}<br>
             {% endfor %}
         </div>
     </div>
