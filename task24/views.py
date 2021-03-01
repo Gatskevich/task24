@@ -7,15 +7,15 @@ def index(request):
     if request.method == 'POST':
         form = StorageForm(request.POST)
         if form.is_valid():
-            name_stat = form.cleaned_data['name']
-            list_obj = dict()
+            name = form.cleaned_data['name']
+            data = dict()
+
             for count in range(1, len(request.POST) - 1):
-                start_value = 'name' + str(count)
-                value = request.POST[start_value]
+                key = 'name' + str(count)
+                value = request.POST[key]
                 if value:
-                    list_obj[start_value] = value
-                count += 1
-        Storage.objects.create(data=list_obj, name=name_stat)
+                    data[key] = value
+        Storage.objects.create(data=data, name=name)
         return redirect('/output/')
     else:
         form = StorageForm()
