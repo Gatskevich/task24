@@ -1,0 +1,12 @@
+.cont {
+    display: block;
+    width : 100px;
+}
+.btn {
+    display: inline-block;
+    background: #8C959D;
+    color: #fff;
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    border-radius: 3px;
+}
